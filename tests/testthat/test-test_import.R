@@ -35,3 +35,10 @@ test_that('parse_fqc', {
   expect_true(is.list(fqc))
   expect_true(all(sapply(fqc,function(x) is.data.frame(x))))
 })
+
+test_that('parse_collection', {
+  fls <- paste('sample_', 1:3, '.txt', sep = '')
+  coll <- parse_collection(fls)
+  expect_true(is.list(coll))
+  expect_equal(names(coll), fls)
+})

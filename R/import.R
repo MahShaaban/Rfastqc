@@ -66,3 +66,20 @@ parse_fqc <- function(file_name) {
   }
   return(ll)
 }
+
+#' Parse fastQC collection of files
+#'
+#' @param file_names A \code{character} vector of file names
+#' @param names A \code{character} vector of length equals that of file_names
+#'
+#' @return A \code{list} os lists.
+#' @export
+parse_collection <- function(file_names, names = NULL) {
+  coll <- lapply(file_names, parse_fqc)
+  if(is.null(names)) {
+    names(coll) <- file_names
+  } else {
+    names(coll) <- names
+  }
+  return(coll)
+}
