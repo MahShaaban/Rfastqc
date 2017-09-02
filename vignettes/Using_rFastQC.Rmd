@@ -1,0 +1,21 @@
+---
+title: "Vignette Title"
+author: "Vignette Author"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Overview
+# Getting Started
+# rFastQC workflow
+## Running FastQC within an R session
+## Reading FastQC ouput in R
+## Exploring FastQC objec
+## Interpreting QC test data
+## Comparing samples
+# Misclanous
+# References
