@@ -64,6 +64,8 @@ parse_fqc <- function(file_name) {
   for(i in seq_along(ind$name)) {
     ll[[i]] <- parse_data(txt, ind$start[i], ind$end[i])
   }
+  names(ll) <- ind$name
+  ll$summary <- tst
   return(ll)
 }
 
