@@ -22,3 +22,6 @@ test_that('plot', {
   expect_error(plot(fqc, test = nms[10]), 'Nothing to plot. Use summary instead.')
   expect_silent(plot(fqc, test = nms[2]))
 })
+
+# clean
+unlink('*.pdf')

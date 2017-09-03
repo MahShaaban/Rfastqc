@@ -24,17 +24,16 @@ summary.FastQC <- function(fqc) {
 test_get <- function(fqc, test = NULL) {
   if(is.null(test)) {
     stop('User should provide a test name')
+  } else if(test %in% c('Basic Statistics', 'summary')) {
+    test_dat <- fqc[[test]]
+  } else {
+    test_dat <- fqc[[test]]
+    test_dat[, 1] <- factor(test_dat[, 1],
+                            levels = unique(test_dat[, 1]))
+    mutate_at(test_dat,
+              vars(2:ncol(test_dat)),
+              function(x) as.numeric(x))
   }
-  if(class(fqc) != 'FastQC') {
-    warning('User should a differen object. Will coerce to Fastqc')
-    class(fqc) <- 'FastQC'
-  }
-  test_dat <- fqc[[test]]
-  test_dat[, 1] <- factor(test_dat[, 1],
-                          levels = unique(test_dat[, 1]))
-  mutate_at(test_dat,
-            vars(2:ncol(test_dat)),
-            function(x) as.numeric(x))
 }
 
 #' Plot method for FastQC objects
