@@ -2,29 +2,20 @@
 % Please edit documentation in R/methods.R
 \name{plot}
 \alias{plot}
-\alias{plot}
-\title{Plot method for FastQC objects}
+\title{Plot method for FastQC/multiFastQC objects}
 \usage{
-plot(fqc, test = NULL, ...)
-
 plot(fqc, test = NULL, ...)
 }
 \arguments{
-\item{fqc}{An object of class FastQC such as that returned by \link{FastQC}}
+\item{fqc}{An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}}
 
 \item{test}{A \code{character} string of the test name}
-
-\item{...}{Other arguments to pass to \code{link[graphics]{plot}}}
 
 \item{...}{Other arguments to pass to \code{link[graphics]{plot}}}
 }
 \value{
 A line graph.
-
-A line graph.
 }
 \description{
-Plot method for FastQC objects
-
-Plot method for multiFastQC objects
+Plot method for FastQC/multiFastQC objects
 }

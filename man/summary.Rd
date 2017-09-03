@@ -2,16 +2,16 @@
 % Please edit documentation in R/methods.R
 \name{summary}
 \alias{summary}
-\title{Summary method for FastQC objects}
+\title{Summary method for FastQC/multiFastQC objects}
 \usage{
 summary(fqc)
 }
 \arguments{
-\item{fqc}{An object of class FastQC such as that returned by \link{FastQC}}
+\item{fqc}{An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}}
 }
 \value{
 Prints summary of test data
 }
 \description{
-Summary method for FastQC objects
+Summary method for FastQC/multiFastQC objects
 }

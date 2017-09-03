@@ -7,7 +7,7 @@
 test_get(fqc, test = NULL)
 }
 \arguments{
-\item{fqc}{An object of class FastQC such as that returned by \link{FastQC}}
+\item{fqc}{An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}}
 
 \item{test}{A \code{character} string of the test name}
 }

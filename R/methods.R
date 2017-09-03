@@ -1,8 +1,9 @@
-#' Summary method for FastQC objects
+#' Summary method for FastQC/multiFastQC objects
 #'
-#' @param fqc An object of class FastQC such as that returned by \link{FastQC}
+#' @param fqc An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}
 #'
 #' @return Prints summary of test data
+#' @importFrom tidyr spread
 #' @export
 summary <- function(fqc){
   UseMethod('summary')
@@ -10,7 +11,15 @@ summary <- function(fqc){
 
 #' @export
 summary.FastQC <- function(fqc) {
-  print(fqc$summary)
+  summ <- test_get(fqc, 'summary')
+  print(summ)
+}
+
+#' @export
+summary.multiFastQC <- function(fqc) {
+  summ <- test_get(fqc, 'summary')
+  summ <- spread(summ, file, output)
+  print(summ)
 }
 
 #' Extract data for a particular test
@@ -26,6 +35,7 @@ test_get <- function(fqc, test = NULL) {
     stop('User should provide a test name.')
   } else if(test %in% c('Basic Statistics', 'summary')) {
     test_dat <- fqc[[test]]
+    return(test_dat)
   } else {
     test_dat <- fqc[[test]]
     test_dat[, 1] <- factor(test_dat[, 1],
@@ -71,13 +81,13 @@ plot_tst <- function(tst_dat, test, ...) {
   }
 }
 
-#' Plot method for FastQC objects
+#' Plot method for FastQC/multiFastQC objects
 #'
 #' @inheritParams test_get
 #' @param ... Other arguments to pass to \code{link[graphics]{plot}}
 #'
 #' @return A line graph.
-#' @importFrom graphics lines axis
+#' @importFrom graphics lines axis mtext
 #' @export
 plot <- function(fqc, test = NULL, ...) {
   UseMethod('plot')
@@ -94,18 +104,6 @@ plot.FastQC <- function(fqc, test = NULL, ...) {
   }
   tst_dat <- test_get(fqc, test)
   plot_tst(tst_dat, test, main = test, ...)
-}
-
-#' Plot method for multiFastQC objects
-#'
-#' @inheritParams test_get
-#' @param ... Other arguments to pass to \code{link[graphics]{plot}}
-#'
-#' @return A line graph.
-#' @importFrom graphics lines axis
-#' @export
-plot <- function(fqc, test = NULL, ...) {
-  UseMethod('plot')
 }
 
 #' @export
