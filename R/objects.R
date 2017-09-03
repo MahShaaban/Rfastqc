@@ -19,7 +19,7 @@ multiFastQC <- function(fqc) {
   nms <- unique(unlist(lapply(fqc, function(x) names(x))))
   test_dat <- list()
   for(i in seq_along(nms)){
-    test_dat[[i]] <- lapply(fqc, test_get, test = nms[i])
+    test_dat[[i]] <- lapply(fqc, function(x) x[[nms[i]]])
   }
   names(test_dat) <- nms
   test_dat <- lapply(test_dat, bind_rows, .id = 'file')

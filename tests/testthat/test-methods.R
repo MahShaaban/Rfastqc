@@ -24,13 +24,11 @@ test_that('plot.FastQC', {
 })
 
 test_that('plot.multiFastQC', {
-  fls <- list.files('tests/testthat/', pattern = '*.txt', full.names = TRUE)
+  fls <- list.files('.', pattern = '*.txt', full.names = TRUE)
   fqc <- parse_collection(fls)
   fqc <- multiFastQC(fqc)
-
-  expect_error(plot(fqc), 'User Should provied a test name.')
-  expect_error(plot(fqc, test = nms[1]), 'Nothing to plot. Use test_get instead.')
-  expect_error(plot(fqc, test = nms[10]), 'Nothing to plot. Use summary instead.')
+  nms <- names(fqc)
+  expect_error(plot(fqc), 'User should provide a test name.')
   expect_silent(plot(fqc, test = nms[2]))
 })
 

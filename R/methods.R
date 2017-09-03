@@ -23,7 +23,7 @@ summary.FastQC <- function(fqc) {
 #' @export
 test_get <- function(fqc, test = NULL) {
   if(is.null(test)) {
-    stop('User should provide a test name')
+    stop('User should provide a test name.')
   } else if(test %in% c('Basic Statistics', 'summary')) {
     test_dat <- fqc[[test]]
   } else {
@@ -94,6 +94,18 @@ plot.FastQC <- function(fqc, test = NULL, ...) {
   }
   tst_dat <- test_get(fqc, test)
   plot_tst(tst_dat, test, main = test, ...)
+}
+
+#' Plot method for multiFastQC objects
+#'
+#' @inheritParams test_get
+#' @param ... Other arguments to pass to \code{link[graphics]{plot}}
+#'
+#' @return A line graph.
+#' @importFrom graphics lines axis
+#' @export
+plot <- function(fqc, test = NULL, ...) {
+  UseMethod('plot')
 }
 
 #' @export

@@ -2,8 +2,11 @@
 % Please edit documentation in R/methods.R
 \name{plot}
 \alias{plot}
+\alias{plot}
 \title{Plot method for FastQC objects}
 \usage{
+plot(fqc, test = NULL, ...)
+
 plot(fqc, test = NULL, ...)
 }
 \arguments{
@@ -12,10 +15,16 @@ plot(fqc, test = NULL, ...)
 \item{test}{A \code{character} string of the test name}
 
 \item{...}{Other arguments to pass to \code{link[graphics]{plot}}}
+
+\item{...}{Other arguments to pass to \code{link[graphics]{plot}}}
 }
 \value{
+A line graph.
+
 A line graph.
 }
 \description{
 Plot method for FastQC objects
+
+Plot method for multiFastQC objects
 }
