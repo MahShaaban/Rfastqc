@@ -13,7 +13,7 @@ test_that('test_get', {
   expect_true(all(apply(tst_dat[, -1], 2, is.numeric)))
 })
 
-test_that('plot', {
+test_that('plot.FastQC', {
   fqc <- parse_fqc('sample_1.txt')
   fqc <- FastQC(fqc)
   nms <- names(fqc)
@@ -22,6 +22,18 @@ test_that('plot', {
   expect_error(plot(fqc, test = nms[10]), 'Nothing to plot. Use summary instead.')
   expect_silent(plot(fqc, test = nms[2]))
 })
+
+test_that('plot.multiFastQC', {
+  fls <- list.files('tests/testthat/', pattern = '*.txt', full.names = TRUE)
+  fqc <- parse_collection(fls)
+  fqc <- multiFastQC(fqc)
+
+  expect_error(plot(fqc), 'User Should provied a test name.')
+  expect_error(plot(fqc, test = nms[1]), 'Nothing to plot. Use test_get instead.')
+  expect_error(plot(fqc, test = nms[10]), 'Nothing to plot. Use summary instead.')
+  expect_silent(plot(fqc, test = nms[2]))
+})
+
 
 # clean
 unlink('*.pdf')
