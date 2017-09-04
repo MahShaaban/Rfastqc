@@ -7,13 +7,22 @@
 test_get(fqc, test = NULL)
 }
 \arguments{
-\item{fqc}{An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}}
+\item{fqc}{An object of class FastQC such as that returned by \link{FastQC}
+or \link{multiFastQC}}
 
-\item{test}{A \code{character} string of the test name}
+\item{test}{A \code{character} string of the test name.}
 }
 \value{
-A \code{data.frame} of the test data
+A \code{data.frame} of the test data.
 }
 \description{
-Extract data for a particular test
+Extract the data of a particular test from a \code{FastQC} or
+\code{multiFasQC} object.
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+fqc <- parse_fqc(fl)
+fqc <- FastQC(fqc)
+tst_dat <- test_get(fqc, test = 'Per base sequence quality')
+
 }

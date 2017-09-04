@@ -2,7 +2,7 @@
 % Please edit documentation in R/objects.R
 \name{multiFastQC}
 \alias{multiFastQC}
-\title{Construc multiFastQC object}
+\title{Construct multiFastQC object}
 \usage{
 multiFastQC(fqc)
 }
@@ -10,8 +10,15 @@ multiFastQC(fqc)
 \item{fqc}{A \code{list} of test data such as that returned by \link{parse_fqc}}
 }
 \value{
-An object of class multiFastQC
+An object of class \code{multiFastQC}
 }
 \description{
-Construc multiFastQC object
+Construct multiFastQC object
+}
+\examples{
+path <- system.file('extdata', package = 'Rfastqc')
+fls <- list.files(path, full.names = TRUE)
+fqc <- parse_collection(fls)
+fqc_ob <- multiFastQC(fqc)
+
 }

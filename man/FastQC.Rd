@@ -10,8 +10,14 @@ FastQC(fqc)
 \item{fqc}{A \code{list} of test data such as that returned by \link{parse_fqc}}
 }
 \value{
-An object of class FastQC
+An object of class \code{FastQC}
 }
 \description{
 Construct FastQC object
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+fqc <- parse_fqc(fl)
+fqc_ob <- FastQC(fqc)
+
 }

@@ -7,11 +7,19 @@
 summary(fqc)
 }
 \arguments{
-\item{fqc}{An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}}
+\item{fqc}{An object of class FastQC such as that returned by \link{FastQC}
+or \link{multiFastQC}}
 }
 \value{
 Prints summary of test data
 }
 \description{
 Summary method for FastQC/multiFastQC objects
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+fqc <- parse_fqc(fl)
+fqc <- FastQC(fqc)
+summary(fqc)
+
 }

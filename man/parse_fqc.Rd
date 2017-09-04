@@ -10,8 +10,15 @@ parse_fqc(file_name)
 \item{file_name}{A \code{character} refers to the text file from fastQC.}
 }
 \value{
-A \code{list} containing a \code{data.frame} for each test
+A named \code{list} containing a \code{data.frame} for each test.
 }
 \description{
-Parse fastQC file
+A wrapper function to fully parse the text file output of FastQC in tidy
+data.frames. Breifly, the function reads the text lines, parse the test
+names, parse the test blocks of text and returns a list.
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+fqc <- parse_fqc(fl)
+
 }

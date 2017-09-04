@@ -7,9 +7,10 @@
 plot(fqc, test = NULL, ...)
 }
 \arguments{
-\item{fqc}{An object of class FastQC such as that returned by \link{FastQC} or \link{multiFastQC}}
+\item{fqc}{An object of class FastQC such as that returned by \link{FastQC}
+or \link{multiFastQC}}
 
-\item{test}{A \code{character} string of the test name}
+\item{test}{A \code{character} string of the test name.}
 
 \item{...}{Other arguments to pass to \code{link[graphics]{plot}}}
 }
@@ -18,4 +19,11 @@ A line graph.
 }
 \description{
 Plot method for FastQC/multiFastQC objects
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+fqc <- parse_fqc(fl)
+fqc <- FastQC(fqc)
+plot(fqc, test = 'Per base sequence quality')
+
 }

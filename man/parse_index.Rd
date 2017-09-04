@@ -7,13 +7,26 @@
 parse_index(txt, tst)
 }
 \arguments{
-\item{txt}{A \code{character} string such as this returned by \code{\link[base]{readLines}}}
+\item{txt}{A \code{character} string such as this returned by
+\code{\link[base]{readLines}}}
 
-\item{tst}{A \code{data.frame} with test output summary such as that returned by \link{parse_test}}
+\item{tst}{A \code{data.frame} with test output summary such as that
+returned by \link{parse_test}}
 }
 \value{
-A \code{data.frame} with the indices of the tests
+A \code{data.frame} with three columns; \code{name}, \code{start}
+and \code{end} for the test name, start and end line number respectively.
 }
 \description{
-Parse indecies for test data.frames
+The function parces the indecies for the data.frames of a particular test.
+Basically, the function uses the test names to identify the block of text
+containing the relevant data. And identify the beginning and the end line
+numbers of the test block.
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+txt <- readLines(fl)
+tst <- parse_test(txt)
+ind <- parse_index(txt, tst)
+
 }

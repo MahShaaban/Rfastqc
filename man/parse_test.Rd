@@ -7,11 +7,22 @@
 parse_test(txt)
 }
 \arguments{
-\item{txt}{A \code{character} string such as this returned by \code{\link[base]{readLines}}}
+\item{txt}{A \code{character} string such as this returned by
+\code{\link[base]{readLines}}}
 }
 \value{
-A \code{data.frame}
+A \code{data.frame} of two columns \code{name} and \code{output}
+fot the test name and output in terms of pass or fail.
 }
 \description{
-Parse test output
+The function parses the different test names and output in terms of pass or
+fail from the text file output of the FastQC utility. Baically, the
+function identies the test names lines' preceeded by '>>', parses the text
+name and the output of that test in a \code{data.frame}.
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+txt <- readLines(fl)
+tst <- parse_test(txt)
+
 }

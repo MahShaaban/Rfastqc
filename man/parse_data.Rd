@@ -7,7 +7,8 @@
 parse_data(txt, start, end)
 }
 \arguments{
-\item{txt}{A \code{character} string such as this returned by \code{\link[base]{readLines}}}
+\item{txt}{A \code{character} string such as this returned by
+\code{\link[base]{readLines}}}
 
 \item{start}{An \code{integer} to mark the beginning of the table for a test}
 
@@ -17,5 +18,16 @@ parse_data(txt, start, end)
 A \code{data.frame} of the test data.
 }
 \description{
-Parse test data.frames
+The function parses the block of text of a particular test and returns a
+tidy data.frame. The block of relevant text is first identified by a start
+and and end line numbers and parsed as strings which is split later and
+made a data.frame of.
+}
+\examples{
+fl <- system.file("extdata", "sample_1.txt", package = "Rfastqc")
+txt <- readLines(fl)
+tst <- parse_test(txt)
+ind <- parse_index(txt, tst)
+dat <- parse_data(txt, start = ind$start[1], ind$end[1])
+
 }
