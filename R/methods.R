@@ -157,7 +157,7 @@ plot.multiFastQC <- function(fqc, test = NULL, ...) {
   tst <- split(tst[, -ncol(tst)], tst$file)
   nms <- names(tst)
   for(i in seq_along(nms)) {
-    test_plot(tst[[i]], test, ...)
-    mtext(nms[i])
+    test_plot(tst[[i]], test, main = test, ...)
+    mtext(nms[i], line = .5)
   }
 }
