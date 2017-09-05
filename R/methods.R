@@ -66,24 +66,28 @@ test_get <- function(fqc, test = NULL) {
 #' @return A line graph
 #'
 #' @export
-test_plot <- function(tst_dat, test, ...) {
+test_plot <- function(tst_dat, test, color = 'black', ...) {
     x <- tst_dat[, 1]
     if(test %in% c('Per base sequence content',
                    'Sequence Duplication Levels',
                    'Adapter Content')) {
         y <- tst_dat[, 2:ncol(tst_dat)]
+        if(length(color) != ncol(y)) {
+            warning(paste('color is not a vector of length ', ncol(y), '. Using default colors.', sep = ''))
+            color <- c('red', 'blue', 'green', 'orange')
+            }
     } else {
         y  <- tst_dat[, 2]
     }
     if(is.null(dim(y))) {
         plot(x, y, type = 'n', xaxt = 'n', ...)
-        lines(x, y, ...)
+        lines(x, y, col = color, ...)
         axis(1, at = 1:length(x), labels = x)
     } else if(ncol(y) > 1) {
         plot(x, y[, 1], type = 'n', xaxt = 'n', ...)
         axis(1, at = 1:length(x), labels = x)
         for(i in 1:ncol(y)) {
-            lines(x, y = y[,i], ...)
+            lines(x, y = y[,i], col = color[i], ...)
         }
     }
 }
