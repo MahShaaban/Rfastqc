@@ -26,7 +26,7 @@ test_get <- function(fqc, test = NULL) {
     # processing other tests involve:
     if(is.null(test)) {
         stop('User should provide a test name.')
-    } else if(test %in% c('Basic Statistics', 'summary')) {
+    } else if(test %in% c('Basic Statistics', 'summary', 'Kmer Content')) {
         test_dat <- fqc[[test]]
         return(test_dat)
     } else {
@@ -68,7 +68,9 @@ test_get <- function(fqc, test = NULL) {
 #' @export
 test_plot <- function(tst_dat, test, ...) {
     x <- tst_dat[, 1]
-    if(test %in% c('Per base sequence content', 'Adapter Content')) {
+    if(test %in% c('Per base sequence content',
+                   'Sequence Duplication Levels',
+                   'Adapter Content')) {
         y <- tst_dat[, 2:ncol(tst_dat)]
     } else {
         y  <- tst_dat[, 2]

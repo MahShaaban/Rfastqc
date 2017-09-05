@@ -225,9 +225,9 @@ plot(fqc,
      ylim = c(0, 100),
      xlab = 'Base',
      ylab = 'Content (%)',
-     col = cols)
+     color = cols)
 dat <- test_get(fqc, test = 'Per base sequence content')
-legend('topright', legend = names(dat[-1]), fill = cols)
+legend('topright', legend = names(dat)[-1], fill = cols)
 ```
 
 ```{r per_sequence_gc_content}
@@ -251,10 +251,37 @@ abline(h = .05, lty = 2, col = 'gray')
 #      test = 'Sequence Length Distribution')
 ```
 
-```{r}
+```{r sequence_duplication_level}
+cols <- c('red', 'blue')
 plot(fqc,
-     test = 'Sequence Duplication Levels')
+     test = 'Sequence Duplication Levels',
+     ylim = c(0, 100),
+     xlab = 'Duplication level',
+     ylab = 'Percentage',
+     color = cols)
+abline(h = c(20, 50), lty = 2, col = 'gray')
 dat <- test_get(fqc, test = 'Sequence Duplication Levels')
+legend('topright', 
+       legend = names(dat)[-1],
+       fill = cols)
+```
+
+```{r overrepresented_sequences}
+# plot(fqc,
+#      test = 'Overrepresented sequences')
+```
+
+```{r adaptor_content}
+cols <- c('red', 'blue', 'green')
+plot(fqc,
+     test = 'Adapter Content',
+     ylim = c(0, .001),
+     xlab = 'Base',
+     ylab = 'Content (%)')
+dat <- test_get(fqc, 'Adapter Content')
+legend('topright',
+       legend = names(dat)[-1],
+       fill = cols)
 ```
 
 ## Comparing samples
