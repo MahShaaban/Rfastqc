@@ -4,12 +4,14 @@
 \alias{test_plot}
 \title{Plot test data}
 \usage{
-test_plot(tst_dat, test, ...)
+test_plot(tst_dat, test, color = "black", ...)
 }
 \arguments{
 \item{tst_dat}{A \code{data.frame} containing data for a single test.}
 
 \item{test}{A \code{character} string of the test name.}
+
+\item{color}{A \code{character} vector of length equals to the number of lines to be plotted.}
 
 \item{...}{Other arguments passed to the \code{\link[graphics]{plot}} function.}
 }

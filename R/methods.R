@@ -61,6 +61,7 @@ test_get <- function(fqc, test = NULL) {
 #'
 #' @param tst_dat A \code{data.frame} containing data for a single test.
 #' @inheritParams test_get
+#' @param color A \code{character} vector of length equals to the number of lines to be plotted.
 #' @param ... Other arguments passed to the \code{\link[graphics]{plot}} function.
 #'
 #' @return A line graph
@@ -127,7 +128,8 @@ summary.multiFastQC <- function(fqc) {
 #' Plot method for FastQC/multiFastQC objects
 #'
 #' @inheritParams test_get
-#' @param ... Other arguments to pass to \code{link[graphics]{plot}}
+#' @inheritParams test_plot
+#' @param ... Other arguments to pass to \code{\link[graphics]{plot}}
 #'
 #' @return A line graph.
 #'

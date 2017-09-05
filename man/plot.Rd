@@ -12,7 +12,7 @@ or \link{multiFastQC}}
 
 \item{test}{A \code{character} string of the test name.}
 
-\item{...}{Other arguments to pass to \code{link[graphics]{plot}}}
+\item{...}{Other arguments to pass to \code{\link[graphics]{plot}}}
 }
 \value{
 A line graph.
