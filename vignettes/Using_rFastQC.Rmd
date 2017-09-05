@@ -1,20 +1,133 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(error = FALSE, message = FALSE, fig.align = 'center')
+```
+
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Using Rfastqc"
+author: "Mahmoud Ahmed"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Using Rfastqc}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
 # Overview
 # Getting Started
-# rFastQC workflow
-## Running FastQC within an R session
-## Reading FastQC ouput in R
-## Exploring FastQC objec
+
+```{r install_Rfastqc, eval=FALSE}
+# installing Rfastqc
+devtools::install_github('MahShaaban/Rfastqc')
+```
+
+```{r load_libraries}
+# loading required libraries
+library(Rfastqc)
+library(stringr)
+library(dplyr)
+library(tidyr)
+```
+
+```{r get_sample}
+# get a sample text output file
+fl <- system.file('extdata', 'sample_1.txt', package = 'Rfastqc')
+file.exists(fl)
+```
+
+```{r read}
+# read file and make object
+fqc <- parse_fqc(fl)
+fqc <- FastQC(fqc)
+```
+
+```{r summary_method}
+# use the summary method
+summary(fqc)
+```
+
+```{r plot_method}
+# use the plot method
+plot(fqc,
+     test = 'Per base sequence quality',
+     xlab = 'Base',
+     ylab = 'Quality')
+```
+
+# Rfastqc workflow  
+## Running FastQC within an R session  
+
+## Reading FastQC output in R    
+
+```{r get_sample_files}
+# get text output files
+path <- system.file('extdata', package = 'Rfastqc')
+fls <- list.files(path, full.names = TRUE)[1:3]
+all(sapply(fls, file.exists))
+```
+
+```{r read_file}
+# read file and make object
+fqc <- parse_fqc(fls[1])
+fqc <- FastQC(fqc)
+```
+
+```{r fastqc_class}
+class(fqc)
+```
+
+```{r read_collection}
+# read multiple text output files and make object
+mfqc <- parse_collection(fls)
+mfqc <- multiFastQC(mfqc)
+```
+
+```{r multifastqc_class}
+class(mfqc)
+```
+
+## Exploring FastQC and multiFastQC objects
+
+```{r fastqc_structure}
+str(mfqc)
+```
+
+```{r fastqc_methods}
+methods(class = 'FastQC')
+```
+
+```{r default_plot}
+par(mfrow = c(1,2))
+plot(fqc, test = 'Per base sequence quality')
+
+```
+
+```{r modifying_plot}
+# use test_get to get data of a particular tes
+# use the data to modify the plot
+plot(fqc,
+     test = 'Per base sequence quality',
+     xlab = 'Base',
+     ylab = 'Quality Score',
+     ylim = c(0, 40))
+dat <- test_get(fqc, test = 'Per base sequence quality')
+lines(x = dat$Base, y = dat$Median, col = 'red')
+abline(h = 30, lty = 2, col = 'gray')
+```
+
+```{r multifastqc_structure}
+str(mfqc)
+```
+
+```{r multifastqc_methods}
+methods(class = 'multiFastQC')
+```
+
+```{r multiple_plots}
+par(mfrow = c(1,3))
+plot(mfqc, test = 'Per base sequence quality')
+```
+
 ## Interpreting QC test data
 ## Comparing samples
 # Misclanous
