@@ -11,9 +11,11 @@ test_plot(tst_dat, test, color = "black", ...)
 
 \item{test}{A \code{character} string of the test name.}
 
-\item{color}{A \code{character} vector of length equals to the number of lines to be plotted.}
+\item{color}{A \code{character} vector of length equals to the number of
+lines to be plotted.}
 
-\item{...}{Other arguments passed to the \code{\link[graphics]{plot}} function.}
+\item{...}{Other arguments passed to the \code{\link[graphics]{plot}}
+function.}
 }
 \value{
 A line graph

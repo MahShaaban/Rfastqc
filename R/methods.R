@@ -61,8 +61,10 @@ test_get <- function(fqc, test = NULL) {
 #'
 #' @param tst_dat A \code{data.frame} containing data for a single test.
 #' @inheritParams test_get
-#' @param color A \code{character} vector of length equals to the number of lines to be plotted.
-#' @param ... Other arguments passed to the \code{\link[graphics]{plot}} function.
+#' @param color A \code{character} vector of length equals to the number of
+#' lines to be plotted.
+#' @param ... Other arguments passed to the \code{\link[graphics]{plot}}
+#' function.
 #'
 #' @return A line graph
 #'
@@ -74,7 +76,10 @@ test_plot <- function(tst_dat, test, color = 'black', ...) {
                    'Adapter Content')) {
         y <- tst_dat[, 2:ncol(tst_dat)]
         if(length(color) != ncol(y)) {
-            warning(paste('color is not a vector of length ', ncol(y), '. Using default colors.', sep = ''))
+            warning(paste('color is not a vector of length ',
+                          ncol(y),
+                          '. Using default colors.',
+                          sep = ''))
             color <- c('red', 'blue', 'green', 'orange')
             }
     } else {
